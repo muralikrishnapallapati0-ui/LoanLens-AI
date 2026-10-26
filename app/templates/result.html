@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LoanLens – Result</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>LoanLens</h1>
+      <p>ML-Loan Eligibility Prediction System</p>
+    </header>
+
+    <div class="result-card {{ risk }}">
+      {% if risk == 'low' %}
+        <div class="result-icon">✅</div>
+        <h2>Loan Approved</h2>
+        <p>The applicant is classified as <strong>low-risk</strong>. Fast-track approval is recommended.</p>
+      {% elif risk == 'high' %}
+        <div class="result-icon">⚠️</div>
+        <h2>Loan Rejected</h2>
+        <p>The applicant is classified as <strong>high-risk</strong>. Further scrutiny or document verification is advised.</p>
+      {% else %}
+        <div class="result-icon">❌</div>
+        <h2>Error</h2>
+        <p>{{ result }}</p>
+      {% endif %}
+    </div>
+
+    <a href="/" class="btn-back">← Evaluate Another Applicant</a>
+  </div>
+</body>
+</html>
